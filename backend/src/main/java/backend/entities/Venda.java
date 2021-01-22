@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "vendas")
 public class Venda implements Serializable {
@@ -22,8 +25,9 @@ public class Venda implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private Date dataHora;
+	private Integer id;	
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date data_hora;
 	private Double valorTotal;
 
 	@ManyToOne
@@ -34,15 +38,16 @@ public class Venda implements Serializable {
 	@JoinColumn(name = "id_forma_pagamento")
 	private FormaPagamento formaPagamento;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
 	private List<ItensVenda> itensVenda = new ArrayList<>();
 
 	public Venda() {
 	}
 
-	public Venda(Integer id, Cliente cliente, FormaPagamento formaPagamento, Date dataHora) {
+	public Venda(Integer id, Cliente cliente, FormaPagamento formaPagamento, Date data_hora) {
 		this.id = id;
-		this.dataHora = dataHora;
+		this.data_hora = data_hora;
 		this.cliente = cliente;
 		this.formaPagamento = formaPagamento;
 	}
@@ -56,11 +61,11 @@ public class Venda implements Serializable {
 	}
 
 	public Date getDataHora() {
-		return dataHora;
+		return data_hora;
 	}
 
-	public void setDataHora(Date dataHora) {
-		this.dataHora = dataHora;
+	public void setDataHora(Date data_hora) {
+		this.data_hora = data_hora;
 	}
 	
 	public Double getValorTotal() {

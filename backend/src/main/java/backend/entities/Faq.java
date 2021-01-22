@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "faq")
 public class Faq implements Serializable {
@@ -20,6 +22,7 @@ public class Faq implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String texto;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date data_hora;
 
 	@ManyToOne

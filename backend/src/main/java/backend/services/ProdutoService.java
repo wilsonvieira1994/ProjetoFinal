@@ -34,6 +34,9 @@ public class ProdutoService {
 		novoObj.setDescricao(obj.getDescricao());
 		novoObj.setQuantidade(obj.getQuantidade());
 		novoObj.setValorUnitario(obj.getValorUnitario());
+		novoObj.setCategoria(obj.getCategoria());
+		novoObj.setMarca(obj.getMarca());
+		novoObj.setFornecedor(obj.getFornecedor());
 		return repositorio.save(novoObj);
 	}
 

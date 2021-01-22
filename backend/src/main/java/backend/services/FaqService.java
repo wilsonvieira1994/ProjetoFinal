@@ -31,6 +31,7 @@ public class FaqService {
 	public Faq update(Faq obj) {
 		Faq novoObj = repositorio.getOne(obj.getId());
 		novoObj.setTexto(obj.getTexto());
+		novoObj.setProduto(obj.getProduto());
 		return repositorio.save(novoObj);
 	}
 
